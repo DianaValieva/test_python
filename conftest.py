@@ -1,15 +1,13 @@
 import pytest
 from selene.support.shared import browser
-from selene import be, have
 
-@pytest.fixture(scope='session')
-def set_browser_size():
-    browser.driver.set_window_size(width=1000, height=1000)
+
+@pytest.fixture(scope="session")
+def open_browser():
+    browser.driver.set_window_size(width=1920, height=1080)
     yield browser
     browser.quit()
 
-
 @pytest.fixture()
-def open_google(set_browser_size):
+def open_start_google(open_browser):
     browser.open('https://google.com')
-
